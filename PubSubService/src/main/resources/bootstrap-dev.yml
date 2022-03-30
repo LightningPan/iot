@@ -1,0 +1,49 @@
+server:
+  port: 9000
+
+info:
+  app:
+    name:
+      ThingShadowAndDeviceManager
+    title:
+      物模型及设备管理
+    description:
+      物模型及设备管理
+    version:
+      1.0.0
+    contact:
+      pan
+
+
+spring:
+  application:
+    name:
+      ${info.app.name}
+
+  datasource:
+    url:
+
+    username:
+
+    password:
+
+  kafka:
+    bootstrap-servers:
+
+  jpa:
+    database-platform:
+      org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto:
+        update
+    show-sql:
+      true
+  redis:
+    host:
+    port:
+    username:
+    password:
+
+pubsub:
+  config:
+    host:
