@@ -72,7 +72,7 @@ public class ThingShadowProcessor {
         key.setProductId(productId);
         key.setMessageType(PropertiesUpload);
         key.setMessageId(messageId);
-        deviceOperationMsgSender.sendMessage(key, deviceProperties.getValues());
+        deviceOperationMsgSender.sendMessage(key, deviceProperties.getPropertyValues());
         deviceProperties.setMessageId(messageId);
         deviceProperties.setSuccess("waiting");
         devicePropertiesService.updateDeviceStatus(deviceProperties);
@@ -96,7 +96,7 @@ public class ThingShadowProcessor {
             deviceStatus = deviceStatusOptional.get();
         }
         HashMap<String, Object> res = new HashMap<>();
-        Map<String, Object> old = new JacksonJsonParser().parseMap(deviceStatus.getValues());
+        Map<String, Object> old = new JacksonJsonParser().parseMap(deviceStatus.getStatusValues());
         Map<String, Object> newValue = new JacksonJsonParser().parseMap(value);
         ThingModel[] thingModels = new Gson().fromJson(product.getProperties(), ThingModel[].class);
         for (ThingModel thingModel : thingModels) {
@@ -105,7 +105,7 @@ public class ThingShadowProcessor {
             }
             processThingModel(res, old, newValue, thingModel, true);
         }
-        deviceStatus.setValues(new Gson().toJson(res));
+        deviceStatus.setStatusValues(new Gson().toJson(res));
         deviceStatus.setGmtModified(Calendar.getInstance().getTimeInMillis());
         deviceStatusService.updateDeviceStatus(deviceStatus);
     }
@@ -133,7 +133,7 @@ public class ThingShadowProcessor {
             return null;
         }
         HashMap<String, Object> res = new HashMap<>();
-        Map<String, Object> old = new JacksonJsonParser().parseMap(deviceProperties.getValues());
+        Map<String, Object> old = new JacksonJsonParser().parseMap(deviceProperties.getPropertyValues());
         Map<String, Object> newValue = new JacksonJsonParser().parseMap(value);
         ThingModel[] thingModels = new Gson().fromJson(product.getProperties(), ThingModel[].class);
         for (ThingModel thingModel : thingModels) {
@@ -142,7 +142,7 @@ public class ThingShadowProcessor {
             }
             processThingModel(res, old, newValue, thingModel, in);
         }
-        deviceProperties.setValues(new Gson().toJson(res));
+        deviceProperties.setPropertyValues(new Gson().toJson(res));
         deviceProperties.setGmtModified(Calendar.getInstance().getTimeInMillis());
         if (compareMessageId && deviceProperties.getMessageId().equals(messageId)) {
             deviceProperties.setSuccess("true");

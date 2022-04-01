@@ -18,7 +18,7 @@ public class DeviceStatus {
     private Long id;
 
     @Column(length = 1024)
-    private String values;
+    private String statusValues;
 
     private long lastOnlineStatus;
 

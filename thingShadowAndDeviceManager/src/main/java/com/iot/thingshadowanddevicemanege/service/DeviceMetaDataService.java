@@ -55,12 +55,12 @@ public class DeviceMetaDataService {
         DeviceStatus deviceStatus = new DeviceStatus();
         deviceStatus.setGmtModified(time);
         deviceStatus.setLastOnlineStatus(0);
-        deviceStatus.setValues("");
+        deviceStatus.setStatusValues("");
         deviceMetaData.setDeviceStatusId(deviceStatusDao.save(deviceStatus).getId());
 
         DeviceProperties deviceProperties = new DeviceProperties();
         deviceProperties.setGmtModified(time);
-        deviceProperties.setValues("");
+        deviceProperties.setPropertyValues("");
         deviceProperties.setModifiedAfterOffline(false);
         deviceProperties.setSuccess("");
         deviceMetaData.setDevicePropertyId(devicePropertiesDao.save(deviceProperties).getId());

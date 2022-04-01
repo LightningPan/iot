@@ -18,7 +18,7 @@ public class DeviceProperties {
     private Long id;
 
     @Column(length = 1024)
-    private String values;
+    private String propertyValues;
 
     private Long gmtModified;
 
